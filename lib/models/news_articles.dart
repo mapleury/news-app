@@ -7,15 +7,6 @@ class NewsArticles {
   final String? content;
   final Source? source;
 
-  NewsArticles({
-    required this.title,
-    required this.description,
-    required this.url,
-    required this.urlToImage,
-    required this.publishedAt,
-    required this.content,
-    required this.source,
-  });
 
   factory NewsArticles.fromJson(Map<String, dynamic> json) {
     return NewsArticles(
@@ -25,7 +16,7 @@ class NewsArticles {
       urlToImage: json['urlToImage'],
       publishedAt: json['publishedAt'],
       content: json['content'],
-      source: json['source'] != null ? Source.fromJson(json['soure']) : null,
+      source: json['source'] != null ? Source.fromJson(json['source']) : null
     );
   }
 
@@ -40,6 +31,8 @@ class NewsArticles {
       'source': source?.toJson(),
     };
   }
+
+  NewsArticles({required this.title, required this.description, required this.url, required this.urlToImage, required this.publishedAt, required this.content, required this.source});
 }
 
 class Source {
@@ -48,13 +41,19 @@ class Source {
 
   Source({this.id, this.name});
 
-  // untuk merapikan format data yang didapatkan dari server
-  // yang awalnya bertipe data .json, menjadi data yang dimengerti oleh bahasa pemrograman yang digunakan
+  // berfungsi untuk merapikan format data yang didapatkan dari server,
+  // yang awalnya bertipe data .json, menjadi data yang dimengerti oleh bahasa pemrograman yang digunakan 
   factory Source.fromJson(Map<String, dynamic> json) {
-    return Source(id: json['id'], name: json['name']);
+    return Source(
+      id: json['id'],
+      name: json['name'],
+    );
   }
 
   Map<String, dynamic> toJson() {
-    return {'id': id, 'name': name};
-  }
+    return {
+      'id': id,
+      'name': name,
+    };
+  } 
 }
